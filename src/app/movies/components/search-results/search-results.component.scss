@@ -1,8 +1,16 @@
 .result-container {
+    overflow-y: scroll;
+    float:left;
+    height:calc(100vh - 40px);
     display: flex;
     flex-flow: row wrap;
     .result-item {
         flex: 0 0 10%;
         margin: 1%
     }
+}
+
+::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
 }
