@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { VotesFilterComponent } from '../../components/votes-filter/votes-filter.component';
 import { Movie } from '../../models';
+import { SearchBarComponent } from '../../components/search-bar/search-bar.component';
 
 @Component({
   templateUrl: './movies-search-page.component.html',
@@ -18,6 +19,7 @@ export class MoviesSearchPageComponent implements OnInit, OnDestroy {
 
   moviesResult: Movie[];
   selectedMovie: Movie;
+  showSpinner: boolean;
 
   constructor(
     private movieDiscoverService: MovieDiscoverService
@@ -28,11 +30,13 @@ export class MoviesSearchPageComponent implements OnInit, OnDestroy {
       this.selectedMovie = null;
       this.moviesResult = result.results;
       this.votesFilterComponent?.resetVotes();
+      this.showSpinner = false;
     }));
     this.movieDiscoverService.discoverMovies();
   }
 
   searchMovies(searchTerm: string): void {
+    this.showSpinner = true;
     this.movieDiscoverService.searchMovies(searchTerm);
   }
 

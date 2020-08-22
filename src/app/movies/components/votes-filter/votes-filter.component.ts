@@ -16,6 +16,7 @@ export class VotesFilterComponent implements OnInit {
 
   selectedStars: number;
   unselectedStars: number;
+  testValue: string;
 
   MAX_STARS = 5;
 
@@ -26,7 +27,8 @@ export class VotesFilterComponent implements OnInit {
   }
 
   resetVotes(): void {
-    console.log('reseting!!!');
+    console.log('reset votes');
+    this.testValue = 'Hide';
     this.selectedStars = 0;
     this.unselectedStars = this.MAX_STARS;
     this.setVoteValue(this.selectedStars);
@@ -39,6 +41,7 @@ export class VotesFilterComponent implements OnInit {
     this.selectedStars = disableFilter ? 0 : newSelectionIndex;
     this.unselectedStars = disableFilter ? this.MAX_STARS : this.MAX_STARS - newSelectionIndex;
 
+    this.testValue = 'Show';
     this.setVoteValue(this.selectedStars);
   }
 

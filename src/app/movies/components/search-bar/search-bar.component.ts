@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter, OnChanges, Input } from '@angular/core';
 
 @Component({
   selector: 'app-search-bar',
@@ -7,10 +7,12 @@ import { Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter } from
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchBarComponent implements OnInit {
-
+  @Input() showSpinner: boolean;
   @Output() search: EventEmitter<string> = new EventEmitter();
 
   searchTerm: string;
+  visibleSpinner: true;
+  testValue: string;
 
   constructor() { }
 
@@ -18,7 +20,8 @@ export class SearchBarComponent implements OnInit {
   }
 
   searchText(term: string): void {
-    this.search.emit(term);
+    if (term) {
+      this.search.emit(term);
+    }
   }
-
 }

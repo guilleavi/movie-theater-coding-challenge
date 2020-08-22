@@ -1,9 +1,21 @@
 <form class="form-inline">
-    <input type="search"
-           class="form-control"
-           name="search-input"
-           [(ngModel)]="searchTerm"
-           place-holder="Search" />
-    <button class="btn btn-outline-success"
-            (click)="searchText(searchTerm)">Search</button>
+       <input type="search"
+              class="form-control"
+              name="search-input"
+              [(ngModel)]="searchTerm"
+              place-holder="Search" />
+       <button class="btn btn-primary"
+               type="button"
+               (click)="searchText(searchTerm)"
+               [disabled]="showSpinner">
+              <span *ngIf="!showSpinner">
+                     Search
+              </span>
+              <span *ngIf="showSpinner">
+                     <span class="spinner-border spinner-border-sm"
+                           role="status"
+                           aria-hidden="true"></span>
+                     Loading...
+              </span>
+       </button>
 </form>
