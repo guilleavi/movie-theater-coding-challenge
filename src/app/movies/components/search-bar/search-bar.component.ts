@@ -22,4 +22,9 @@ export class SearchBarComponent implements OnInit {
   searchText(term: string): void {
     this.search.emit(term);
   }
+
+  clearSearchTerm(): void {
+    this.searchTerm = '';
+    this.searchText('');
+  }
 }
