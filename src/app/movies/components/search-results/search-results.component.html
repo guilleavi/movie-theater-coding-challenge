@@ -4,4 +4,7 @@
          (click)="select(result)">
         <img src="{{'https://image.tmdb.org/t/p/w185/' + result.poster_path}}">
     </div>
+    <div *ngIf="!resultsList || !resultsList.length">
+        Oooops, no results!
+    </div>
 </div>
