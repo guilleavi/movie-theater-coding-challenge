@@ -1,0 +1,9 @@
+<form class="form-inline">
+    <input type="search"
+           class="form-control"
+           name="search-input"
+           [(ngModel)]="searchTerm"
+           place-holder="Search" />
+    <button class="btn btn-outline-success"
+            (click)="searchText(searchTerm)">Search</button>
+</form>

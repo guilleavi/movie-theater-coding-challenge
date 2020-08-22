@@ -1,0 +1,10 @@
+<table class="table table-striped">
+    <thead>
+        <th>Title</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let result of resultsList" (click)="select(result)">
+            {{ result.title }}
+        </tr>
+    </tbody>
+</table>
