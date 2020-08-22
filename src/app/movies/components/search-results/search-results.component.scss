@@ -14,3 +14,22 @@
     width: 0px;  /* Remove scrollbar space */
     background: transparent;  /* Optional: just make scrollbar invisible */
 }
+
+.selected {
+    border: 2px solid red;
+}
+
+.empty-img {
+    background: url("../../../../assets/movie-cell.png");
+    width: 185px;
+    height: 280px;
+    background-size: 185px 280px;
+    background-repeat: no-repeat;
+    align-items: center;
+    display: flex;
+    .no-img-txt {
+        flex: 0 0 80%;
+        text-align: center;
+        margin: 10%;
+    }
+}

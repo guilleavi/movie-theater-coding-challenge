@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Movie } from '../../models';
 
 @Component({
@@ -7,18 +7,25 @@ import { Movie } from '../../models';
   styleUrls: ['./search-results.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SearchResultsComponent implements OnInit {
+export class SearchResultsComponent implements OnInit, OnChanges {
 
   @Input() resultsList: Movie[] = [];
   @Output() selectResult: EventEmitter<Movie> = new EventEmitter();
+
+  selectedItemId: number;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  select(result: Movie): void {
-    this.selectResult.emit(result);
+  ngOnChanges(changes: SimpleChanges): void {
+    this.selectedItemId = 0;
+  }
+
+  select(item: Movie): void {
+    this.selectedItemId = item.id;
+    this.selectResult.emit(item);
   }
 
 }
