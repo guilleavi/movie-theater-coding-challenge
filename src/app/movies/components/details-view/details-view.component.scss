@@ -1,0 +1,23 @@
+.star {
+    color: gold;
+}
+
+.details {
+    .genre-and-votes {
+        display: flex;
+        justify-content: space-between;
+        .votes {
+            margin-right: 12%;
+        }
+    }
+    .overview {
+        padding-top: 1%;
+        margin-right: 12%;
+        text-align: justify;
+    }
+    .release-date,
+    .original-language {
+        text-align: end;
+        margin-right: 12%;
+    }
+}

@@ -1,9 +1,13 @@
-<h1>{{details.title}}</h1>
-<div>popularity {{details.popularity}}</div>
-<div>vote_count {{details.vote_count}}</div>
-<div>adult {{details.adult}}</div>
-<div>original_language {{details.original_language}}</div>
-<div>genre_ids {{details.genre_ids}}</div>
-<div>vote_average {{details.vote_average}}</div>
-<div>overview {{details.overview}}</div>
-<div>release_date {{details.release_date}}</div>
+<div class="details">
+    <h2 class="movie-title">{{details.title}}</h2>
+    <div class="genre-and-votes">
+        <span class="genre">{{getGenres(details.genre_ids)}}</span>
+        <span class="votes">
+            <fa-icon class="star"
+                     [icon]="fasStar"></fa-icon>{{details.vote_average}}/10 ({{details.vote_count}} votes)
+        </span>
+    </div>
+    <div class="original-language">Original Language: {{details.original_language | uppercase }}</div>
+    <div class="release-date">Release Date: {{details.release_date}}</div>
+    <p class="overview">{{details.overview}}</p>
+</div>
