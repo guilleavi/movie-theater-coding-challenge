@@ -36,7 +36,6 @@ export class MoviesSearchPageComponent implements OnInit, OnDestroy {
   }
 
   searchMovies(searchTerm: string): void {
-    console.log('searchTerm', searchTerm);
     this.showSpinner = true;
     if (searchTerm && typeof searchTerm === 'string') {
       this.movieDiscoverService.searchMovies(searchTerm);

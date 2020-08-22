@@ -27,7 +27,6 @@ export class VotesFilterComponent implements OnInit {
   }
 
   resetVotes(): void {
-    console.log('reset votes');
     this.testValue = 'Hide';
     this.selectedStars = 0;
     this.unselectedStars = this.MAX_STARS;
