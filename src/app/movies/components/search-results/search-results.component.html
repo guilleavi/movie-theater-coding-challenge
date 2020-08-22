@@ -5,11 +5,17 @@
          [ngClass]="{'selected': selectedItemId === result.id}">
         <img src="{{'https://image.tmdb.org/t/p/w185' + result.poster_path}}"
              alt="{{result.title}}"
-             width="185"
-             height="280"
-             *ngIf="result.poster_path" />
-        <div *ngIf="!result.poster_path" class="empty-img">
-           <div class="no-img-txt">{{ result.title }}</div> 
+             class="movie-img"
+             *ngIf="result.poster_path"
+             data-toggle="tooltip"
+             data-placement="top"
+             title="{{ result.title }}" />
+        <div *ngIf="!result.poster_path"
+             class="empty-img"
+             data-toggle="tooltip"
+             data-placement="top"
+             title="{{ result.title }}">
+            <div class="no-img-txt">{{ result.title }}</div>
         </div>
     </div>
     <div *ngIf="!resultsList || !resultsList.length">

@@ -1,5 +1,5 @@
 <div class="row sticky-top">
-    <div class="col-12 search-header">
+    <div class="col-12 search-movies-header">
         <app-search-bar class="search-bar"
                         [showSpinner]="showSpinner"
                         (search)="searchMovies($event)"></app-search-bar>
@@ -7,7 +7,7 @@
                           (vote)="filterByVotes($event)"></app-votes-filter>
     </div>
 </div>
-<div class="row pt-3">
+<div class="row pt-3 search-movies-content">
     <div [ngClass]="selectedMovie? 'col-6' : 'col-12'">
         <app-search-results [resultsList]="moviesResult"
                             (selectResult)="showDetails($event)"></app-search-results>
