@@ -1,8 +1,14 @@
-<fa-icon [icon]="fasStar"
-         *ngFor="let star of [].constructor(selectedStars); let i = index"
-         (click)="updateStars(i + 1, true)"
-         class="selected-star"></fa-icon>
-<fa-icon [icon]="farStar"
-         *ngFor="let star of [].constructor(unselectedStars); let i = index"
-         (click)="updateStars(i + 1, false)"
-         class="unselected-star"></fa-icon>
+<div class="votes-filter">
+    <h6 class="votes-filter-title">Filter by rating:</h6>
+    <div class="votes-filter-stars">
+        <fa-icon [icon]="fasStar"
+                 *ngFor="let star of [].constructor(selectedStars); let i = index"
+                 (click)="updateStars(i + 1, true)"
+                 class="selected-star"></fa-icon>
+        <fa-icon [icon]="farStar"
+                 *ngFor="let star of [].constructor(unselectedStars); let i = index"
+                 (click)="updateStars(i + 1, false)"
+                 class="unselected-star"></fa-icon>
+    </div>
+</div>
+

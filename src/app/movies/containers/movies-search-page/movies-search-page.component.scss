@@ -1,3 +1,16 @@
 .sticky-top {
     background-color: white;
 }
+
+.search-header {
+    display: flex;
+    .search-bar {
+        flex: 0 0 48%;
+        margin: 1%;
+    }
+    .votes-bar {
+        flex: 0 0 24%;
+        margin: 1%;
+        display: flex;
+    }
+}

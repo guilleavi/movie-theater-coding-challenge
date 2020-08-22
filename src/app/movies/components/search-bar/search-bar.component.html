@@ -1,12 +1,13 @@
-<form class="form-inline"
+<form class="search-form form-inline"
       autocomplete="off"
       (ngSubmit)="searchText(searchTerm)">
        <input type="text"
-              class="form-control"
+              class="search-input form-control"
               name="search-input"
+              autofocus
               [(ngModel)]="searchTerm"
               place-holder="Search" />
-       <button class="btn btn-primary"
+       <button class="search-button btn btn-primary"
                type="submit"
                [disabled]="showSpinner">
               <span *ngIf="!showSpinner">
@@ -14,12 +15,10 @@
               </span>
               <span *ngIf="showSpinner">
                      <span class="spinner-border spinner-border-sm"
-                           role="status"
-                           aria-hidden="true"></span>
-                     Loading...
+                           role="status"></span>
               </span>
        </button>
-       <button class="btn btn-secondary"
+       <button class="clear-button btn btn-secondary"
                type="button"
                (click)="clearSearchTerm()">
               Clear

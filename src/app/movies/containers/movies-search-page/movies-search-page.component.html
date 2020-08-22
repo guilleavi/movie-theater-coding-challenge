@@ -1,14 +1,19 @@
 <div class="row sticky-top">
-    <div class="col-12">
-        <app-search-bar [showSpinner]="showSpinner" (search)="searchMovies($event)"></app-search-bar>
-        <app-votes-filter (vote)="filterByVotes($event)"></app-votes-filter>
+    <div class="col-12 search-header">
+        <app-search-bar class="search-bar"
+                        [showSpinner]="showSpinner"
+                        (search)="searchMovies($event)"></app-search-bar>
+        <app-votes-filter class="votes-bar"
+                          (vote)="filterByVotes($event)"></app-votes-filter>
     </div>
 </div>
 <div class="row pt-3">
     <div [ngClass]="selectedMovie? 'col-6' : 'col-12'">
-        <app-search-results [resultsList]="moviesResult" (selectResult)="showDetails($event)"></app-search-results>
+        <app-search-results [resultsList]="moviesResult"
+                            (selectResult)="showDetails($event)"></app-search-results>
     </div>
-    <div class="col-6" *ngIf="selectedMovie">
+    <div class="col-6"
+         *ngIf="selectedMovie">
         <app-details-view [details]="selectedMovie"></app-details-view>
     </div>
 </div>

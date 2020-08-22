@@ -1,0 +1,13 @@
+.search-form {
+    display: flex;
+    .search-input {
+        flex: 0 0 69%;
+        margin-right: 1%;
+    }
+    .search-button,
+    .clear-button {
+        flex: 0 0 14%;
+        margin-right: 1%;
+
+    }
+}
