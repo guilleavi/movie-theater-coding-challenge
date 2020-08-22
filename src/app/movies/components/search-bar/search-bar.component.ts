@@ -20,7 +20,7 @@ export class SearchBarComponent implements OnInit {
   }
 
   searchText(term: string): void {
-    if (term) {
+    if (term && typeof term === 'string') {
       this.search.emit(term);
     }
   }

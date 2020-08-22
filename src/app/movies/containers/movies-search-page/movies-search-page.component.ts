@@ -36,8 +36,10 @@ export class MoviesSearchPageComponent implements OnInit, OnDestroy {
   }
 
   searchMovies(searchTerm: string): void {
-    this.showSpinner = true;
-    this.movieDiscoverService.searchMovies(searchTerm);
+    if (searchTerm && typeof searchTerm === 'string') {
+      this.showSpinner = true;
+      this.movieDiscoverService.searchMovies(searchTerm);
+    }
   }
 
   filterByVotes(voteValue: number): void {
@@ -46,7 +48,7 @@ export class MoviesSearchPageComponent implements OnInit, OnDestroy {
     const minRate = maxRate - 2;
     this.movieDiscoverService.moviesResult$.pipe(first()).subscribe(moviesResult => {
       if (moviesResult && moviesResult.results) {
-        let newMoviesResult = [...moviesResult.results ];
+        let newMoviesResult = [...moviesResult.results];
         if (maxRate) {
           const filteredResults = moviesResult.results.filter(result =>
             result.vote_average <= maxRate && result.vote_average >= minRate
