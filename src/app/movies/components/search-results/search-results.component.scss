@@ -1,0 +1,8 @@
+.result-container {
+    display: flex;
+    flex-flow: row wrap;
+    .result-item {
+        flex: 0 0 10%;
+        margin: 1%
+    }
+}

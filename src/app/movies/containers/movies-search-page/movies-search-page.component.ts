@@ -24,7 +24,7 @@ export class MoviesSearchPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscriptions.add(this.movieDiscoverService.moviesResult$.subscribe(result => {
-      this.selectedMovie = undefined;
+      this.selectedMovie = null;
       this.moviesResult = result;
       console.log('reset', this.votesFilterComponent);
       this.votesFilterComponent?.resetVotes();
@@ -33,10 +33,11 @@ export class MoviesSearchPageComponent implements OnInit, OnDestroy {
   }
 
   searchMovies(searchTerm: string): void {
-    this.movieDiscoverService.searchMovies();
+    this.movieDiscoverService.searchMovies(searchTerm);
   }
 
   filterByVotes(voteValue: number): void {
+    this.selectedMovie = null;
     const maxRate = voteValue * 2;
     const minRate = maxRate - 2;
     this.movieDiscoverService.moviesResult$.pipe(first()).subscribe(moviesResult => {
