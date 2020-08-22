@@ -6,7 +6,7 @@
 </div>
 <div class="row pt-3">
     <div [ngClass]="selectedMovie? 'col-6' : 'col-12'">
-        <app-search-results [resultsList]="moviesResult?.results" (selectResult)="showDetails($event)"></app-search-results>
+        <app-search-results [resultsList]="moviesResult" (selectResult)="showDetails($event)"></app-search-results>
     </div>
     <div class="col-6" *ngIf="selectedMovie">
         <app-details-view [details]="selectedMovie"></app-details-view>

@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { MovieDiscoverService } from '../../services/movie-discover.service';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { VotesFilterComponent } from '../../components/votes-filter/votes-filter.component';
+import { Movie } from '../../models';
 
 @Component({
   templateUrl: './movies-search-page.component.html',
@@ -15,8 +16,8 @@ export class MoviesSearchPageComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription = new Subscription();
 
-  moviesResult: any[]; // TODO: create movie model
-  selectedMovie: any;
+  moviesResult: Movie[];
+  selectedMovie: Movie;
 
   constructor(
     private movieDiscoverService: MovieDiscoverService
@@ -25,8 +26,7 @@ export class MoviesSearchPageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscriptions.add(this.movieDiscoverService.moviesResult$.subscribe(result => {
       this.selectedMovie = null;
-      this.moviesResult = result;
-      console.log('reset', this.votesFilterComponent);
+      this.moviesResult = result.results;
       this.votesFilterComponent?.resetVotes();
     }));
     this.movieDiscoverService.discoverMovies();
@@ -42,19 +42,19 @@ export class MoviesSearchPageComponent implements OnInit, OnDestroy {
     const minRate = maxRate - 2;
     this.movieDiscoverService.moviesResult$.pipe(first()).subscribe(moviesResult => {
       if (moviesResult && moviesResult.results) {
-        const newMoviesResult = { ...this.moviesResult };
+        let newMoviesResult = [...moviesResult.results ];
         if (maxRate) {
-          const filteredResults = moviesResult?.results.filter(result =>
+          const filteredResults = moviesResult.results.filter(result =>
             result.vote_average <= maxRate && result.vote_average >= minRate
           );
-          newMoviesResult.results = filteredResults;
+          newMoviesResult = filteredResults;
         }
         this.moviesResult = newMoviesResult;
       }
     });
   }
 
-  showDetails(movie: any): void {
+  showDetails(movie: Movie): void {
     this.selectedMovie = movie;
   }
 

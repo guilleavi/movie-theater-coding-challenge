@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { Movie } from '../../models';
 
 @Component({
   selector: 'app-search-results',
@@ -8,15 +9,15 @@ import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter
 })
 export class SearchResultsComponent implements OnInit {
 
-  @Input() resultsList: any[] = [];
-  @Output() selectResult: EventEmitter<any> = new EventEmitter();
+  @Input() resultsList: Movie[] = [];
+  @Output() selectResult: EventEmitter<Movie> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  select(result: any): void {
+  select(result: Movie): void {
     this.selectResult.emit(result);
   }
 

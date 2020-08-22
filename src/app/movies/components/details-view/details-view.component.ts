@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Movie } from '../../models';
 
 @Component({
   selector: 'app-details-view',
@@ -8,7 +9,7 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
 })
 export class DetailsViewComponent implements OnInit {
 
-  @Input() details: any;
+  @Input() details: Movie;
 
   constructor() { }
 
