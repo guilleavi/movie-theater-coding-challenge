@@ -1,10 +1,13 @@
 <table class="table table-striped">
     <thead>
         <th>Title</th>
+        <th>Votes</th>
     </thead>
     <tbody>
-        <tr *ngFor="let result of resultsList" (click)="select(result)">
-            {{ result.title }}
+        <tr *ngFor="let result of resultsList"
+            (click)="select(result)">
+            <td>{{ result.title }}</td>
+            <td>{{ result.vote_average }}</td>
         </tr>
     </tbody>
 </table>

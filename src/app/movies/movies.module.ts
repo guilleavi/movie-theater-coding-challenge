@@ -5,17 +5,21 @@ import { MoviesSearchPageComponent } from './containers/movies-search-page/movie
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { DetailsViewComponent } from './components/details-view/details-view.component';
+import { VotesFilterComponent } from './components/votes-filter/votes-filter.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
     MoviesSearchPageComponent,
     SearchBarComponent,
     SearchResultsComponent,
-    DetailsViewComponent
+    DetailsViewComponent,
+    VotesFilterComponent
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ],
   exports: [
     MoviesSearchPageComponent
