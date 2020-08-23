@@ -1,22 +1,26 @@
 <div class="result-container">
     <div class="result-item"
+         [ngClass]="{'selected': selectedItemId === result.id}"
          *ngFor="let result of resultsList"
-         (click)="select(result)"
-         [ngClass]="{'selected': selectedItemId === result.id}">
-        <img src="{{'https://image.tmdb.org/t/p/w185' + result.poster_path}}"
-             alt="{{result.title}}"
-             class="movie-img"
-             *ngIf="result.poster_path"
-             data-toggle="tooltip"
-             data-placement="top"
-             title="{{ result.title }}" />
-        <div *ngIf="!result.poster_path"
-             class="empty-img"
-             data-toggle="tooltip"
-             data-placement="top"
-             title="{{ result.title }}">
-            <div class="no-img-txt">{{ result.title }}</div>
+         (click)="select(result)">
+
+        <div *ngIf="result.poster_path; else emptyImage">
+            <img src="{{'https://image.tmdb.org/t/p/w185' + result.poster_path}}"
+                 alt="{{result.title}}"
+                 class="movie-img"
+                 data-toggle="tooltip"
+                 data-placement="top"
+                 title="{{ result.title }}" />
         </div>
+        <ng-template #emptyImage>
+            <div class="empty-img"
+                 data-toggle="tooltip"
+                 data-placement="top"
+                 title="{{ result.title }}">
+                <div class="no-img-txt">{{ result.title }}</div>
+            </div>
+        </ng-template>
+
     </div>
     <div *ngIf="!resultsList || !resultsList.length">
         Oooops, no results!

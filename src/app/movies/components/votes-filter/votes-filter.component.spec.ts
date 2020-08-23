@@ -8,9 +8,9 @@ describe('VotesFilterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ VotesFilterComponent ]
+      declarations: [VotesFilterComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

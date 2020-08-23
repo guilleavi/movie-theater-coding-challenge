@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+
 import { MoviesSearchPageComponent } from './movies/containers/movies-search-page/movies-search-page.component';
 
 const ROUTES: Routes = [

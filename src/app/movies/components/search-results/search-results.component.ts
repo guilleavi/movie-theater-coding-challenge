@@ -1,4 +1,14 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
+
 import { Movie } from '../../models';
 
 @Component({
@@ -19,10 +29,14 @@ export class SearchResultsComponent implements OnInit, OnChanges {
   ngOnInit(): void {
   }
 
+  /* Unselect movie every time results list changes
+   */
   ngOnChanges(changes: SimpleChanges): void {
     this.selectedItemId = 0;
   }
 
+  /* Emit selected movie
+  */
   select(item: Movie): void {
     this.selectedItemId = item.id;
     this.selectResult.emit(item);

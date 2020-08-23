@@ -1,6 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
-import { faStar as fasStar } from '@fortawesome/free-solid-svg-icons';
+import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
+import { faStar as fasStar } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-votes-filter',
@@ -16,7 +16,6 @@ export class VotesFilterComponent implements OnInit {
 
   selectedStars: number;
   unselectedStars: number;
-  testValue: string;
 
   MAX_STARS = 5;
 
@@ -26,24 +25,28 @@ export class VotesFilterComponent implements OnInit {
     this.resetVotes();
   }
 
+  /* Initialize votes filter unselecting all the stars
+   */
   resetVotes(): void {
-    this.testValue = 'Hide';
     this.selectedStars = 0;
     this.unselectedStars = this.MAX_STARS;
     this.setVoteValue(this.selectedStars);
   }
 
-  updateStars(starIndex: number, select: boolean): void {
+  /* Update stars selection
+   */
+  updateVotes(starIndex: number, select: boolean): void {
     const newSelectionIndex = starIndex + (select ? 0 : this.selectedStars);
     const disableFilter = newSelectionIndex === this.selectedStars;
 
     this.selectedStars = disableFilter ? 0 : newSelectionIndex;
     this.unselectedStars = disableFilter ? this.MAX_STARS : this.MAX_STARS - newSelectionIndex;
 
-    this.testValue = 'Show';
     this.setVoteValue(this.selectedStars);
   }
 
+  /* Emit vote value
+  */
   setVoteValue(voteValue: number): void {
     this.vote.emit(voteValue);
   }

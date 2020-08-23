@@ -8,9 +8,9 @@ describe('MoviesSearchPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MoviesSearchPageComponent ]
+      declarations: [MoviesSearchPageComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

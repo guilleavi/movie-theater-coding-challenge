@@ -1,10 +1,10 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { MovieDiscoverService } from '../../services/movie-discover.service';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
+
 import { VotesFilterComponent } from '../../components/votes-filter/votes-filter.component';
 import { Movie } from '../../models';
-import { SearchBarComponent } from '../../components/search-bar/search-bar.component';
+import { MovieDiscoverService } from '../../services/movie-discover.service';
 
 @Component({
   templateUrl: './movies-search-page.component.html',
@@ -26,44 +26,67 @@ export class MoviesSearchPageComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    /* Keep subscription open to keep the movies results updates*/
     this.subscriptions.add(this.movieDiscoverService.moviesResult$.subscribe(result => {
-      this.selectedMovie = null;
-      this.moviesResult = result.results;
-      this.votesFilterComponent?.resetVotes();
+      this.moviesResult = result?.results ? JSON.parse(JSON.stringify(result.results)) : [];
+      this.resetUserSelections();
+
       this.showSpinner = false;
     }));
+    /* Fill the movies results with the discover movies at the init */
     this.movieDiscoverService.discoverMovies();
   }
 
+  /*
+   * Search movies by a term
+   */
   searchMovies(searchTerm: string): void {
     this.showSpinner = true;
-    if (searchTerm && typeof searchTerm === 'string') {
+
+    const hasValidSearchTerm = searchTerm && typeof searchTerm === 'string';
+    if (hasValidSearchTerm) {
       this.movieDiscoverService.searchMovies(searchTerm);
     } else {
       this.movieDiscoverService.discoverMovies();
     }
   }
 
+  /*
+   * Filter movies by its rate
+   */
   filterByVotes(voteValue: number): void {
     this.selectedMovie = null;
     const maxRate = voteValue * 2;
     const minRate = maxRate - 2;
+
+    /* Filter by rate over the full list of movies results */
     this.movieDiscoverService.moviesResult$.pipe(first()).subscribe(moviesResult => {
-      if (moviesResult && moviesResult.results) {
-        let newMoviesResult = [...moviesResult.results];
-        if (maxRate) {
-          const filteredResults = moviesResult.results.filter(result =>
+
+      const hasMovies = moviesResult && moviesResult.results && moviesResult.results.length;
+      if (hasMovies) {
+        const results = JSON.parse(JSON.stringify(moviesResult.results));
+        if (maxRate > 0) {
+          this.moviesResult = results.filter((result: Movie) =>
             result.vote_average <= maxRate && result.vote_average >= minRate
           );
-          newMoviesResult = filteredResults;
+        } else {
+          this.moviesResult = results;
         }
-        this.moviesResult = newMoviesResult;
       }
+
     });
   }
 
+  /*
+   * Show selected movie details
+   */
   showDetails(movie: Movie): void {
     this.selectedMovie = movie;
+  }
+
+  private resetUserSelections(): void {
+    this.selectedMovie = null;
+    this.votesFilterComponent?.resetVotes();
   }
 
   ngOnDestroy(): void {

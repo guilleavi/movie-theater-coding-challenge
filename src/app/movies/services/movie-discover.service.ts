@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+
+import { UrlConstants } from '../constants/url.constants';
 import { MoviesResponse } from '../models';
 
 @Injectable({
@@ -15,22 +17,23 @@ export class MovieDiscoverService {
     private httpClient: HttpClient
   ) { }
 
-  // TODO: add loader
-
   /**
-   * Return suggested movies sorted by popularity (no pagination)
+   * Return suggested movies sorted by popularity desc
    */
-  discoverMovies(): void  {
-    const url = 'https://api.themoviedb.org/3/discover/movie?api_key=c8c19f0aef08483bb74150baa6f6a205&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1';
+  discoverMovies(): void {
+    const url = `${UrlConstants.DISCOVER}?api_key=${UrlConstants.API_KEY}&sort_by=popularity.desc`;
 
     this.httpClient.get<MoviesResponse>(url).subscribe(
       result => this.moviesResultSource.next(result)
     );
   }
 
+  /**
+   * Search movies using search term
+   */
   searchMovies(searchTerm: string): void {
     if (searchTerm && typeof searchTerm === 'string') {
-      const url = `https://api.themoviedb.org/3/search/movie?api_key=c8c19f0aef08483bb74150baa6f6a205&language=en-US&query=${searchTerm}&page=1&include_adult=false`;
+      const url = `${UrlConstants.SEARCH}?api_key=${UrlConstants.API_KEY}&query=${searchTerm}`;
 
       this.httpClient.get<MoviesResponse>(url).subscribe(
         result => this.moviesResultSource.next(result)

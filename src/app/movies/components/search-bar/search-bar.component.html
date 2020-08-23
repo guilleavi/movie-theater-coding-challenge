@@ -4,19 +4,18 @@
        <input type="text"
               class="search-input form-control"
               name="search-input"
-              autofocus
               [(ngModel)]="searchTerm"
-              place-holder="Search" />
+              place-holder="Search"
+              autofocus />
        <button class="search-button btn btn-primary"
                type="submit"
                [disabled]="showSpinner">
-              <span *ngIf="!showSpinner">
+              <div *ngIf="showSpinner; else searchButton">
+                     <span class="spinner-border spinner-border-sm"></span>
+              </div>
+              <ng-template #searchButton>
                      Search
-              </span>
-              <span *ngIf="showSpinner">
-                     <span class="spinner-border spinner-border-sm"
-                           role="status"></span>
-              </span>
+              </ng-template>
        </button>
        <button class="clear-button btn btn-secondary"
                type="button"
