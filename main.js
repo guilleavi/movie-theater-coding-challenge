@@ -43,12 +43,12 @@ __webpack_require__.r(__webpack_exports__);
 
 const ROUTES = [
     {
-        path: 'movies',
+        path: '',
         component: _movies_containers_movies_search_page_movies_search_page_component__WEBPACK_IMPORTED_MODULE_2__["MoviesSearchPageComponent"]
     },
     {
         path: '**',
-        redirectTo: 'movies'
+        redirectTo: ''
     }
 ];
 class AppRoutingModule {
