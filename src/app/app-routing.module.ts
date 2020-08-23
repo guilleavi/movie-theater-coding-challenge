@@ -5,12 +5,12 @@ import { MoviesSearchPageComponent } from './movies/containers/movies-search-pag
 
 const ROUTES: Routes = [
   {
-    path: 'movies',
+    path: '',
     component: MoviesSearchPageComponent
   },
   {
     path: '**',
-    redirectTo: 'movies'
+    redirectTo: ''
   }
 ];
 
