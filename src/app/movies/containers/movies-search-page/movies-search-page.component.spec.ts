@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MoviesSearchPageComponent } from './movies-search-page.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('MoviesSearchPageComponent', () => {
   let component: MoviesSearchPageComponent;
@@ -8,7 +9,8 @@ describe('MoviesSearchPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MoviesSearchPageComponent]
+      declarations: [MoviesSearchPageComponent],
+      imports: [HttpClientModule]
     })
       .compileComponents();
   }));
