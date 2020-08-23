@@ -33,12 +33,13 @@ export class SearchResultsComponent implements OnInit, OnChanges {
    */
   ngOnChanges(changes: SimpleChanges): void {
     this.selectedItemId = 0;
+    this.scrollToElement(0);
   }
 
   /* Scroll to selected element
   */
   private scrollToElement(index): void {
-    document.getElementById('result-item-' + index).scrollIntoView();
+    document.getElementById('result-item-' + index)?.scrollIntoView({behavior: 'smooth'});
   }
 
   /* Emit selected movie
