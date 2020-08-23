@@ -1,8 +1,9 @@
 <div class="result-container">
     <div class="result-item"
          [ngClass]="{'selected': selectedItemId === result.id}"
-         *ngFor="let result of resultsList"
-         (click)="select(result)">
+         *ngFor="let result of resultsList; let i = index;"
+         id="{{'result-item-' + i}}"
+         (click)="select(result, i)">
 
         <div *ngIf="result.poster_path; else emptyImage">
             <img src="{{'https://image.tmdb.org/t/p/w185' + result.poster_path}}"

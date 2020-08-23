@@ -35,11 +35,24 @@ export class SearchResultsComponent implements OnInit, OnChanges {
     this.selectedItemId = 0;
   }
 
+  /* Scroll to selected element
+  */
+  private scrollToElement(index): void {
+    document.getElementById('result-item-' + index).scrollIntoView();
+  }
+
   /* Emit selected movie
   */
-  select(item: Movie): void {
+  select(item: Movie, index: number): void {
     this.selectedItemId = item.id;
     this.selectResult.emit(item);
+
+    /* Adding timeout to be sure that the scroll changes after the details view is open
+     * (this could be replace by a new input that shows when the detail view is already opened)
+     */
+    setTimeout(
+      () => this.scrollToElement(index)
+    );
   }
 
 }
